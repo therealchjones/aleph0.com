@@ -19,14 +19,14 @@ jobs:
       contents: read # for actions/checkout to fetch code
     runs-on: ubuntu-latest
     environment:
-      name: default
+      name: deployment-from-main
       url: https://aleph0.com/
     name: Deploy site
     steps:
       - name: Setup SSH
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1.3.5
         with:
-          ssh-private-key: ${{ secrets.DREAMHOST_SSH_KEY }}
+          ssh-private-key: ${{ secrets.DREAMHOST_PRIVATE_KEY }}
           ssh-host: www.aleph0.com
       - uses: actions/checkout@v3
       - name: Copy to DreamHost
