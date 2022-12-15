@@ -1,0 +1,33 @@
+# This workflow will push files to a server when you change your code.
+#
+# Intentionally does not delete any files from server, though existing ones may
+# be overwritten.
+name: Deploy site to DreamHost
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy_job:
+    permissions:
+      contents: read # for actions/checkout to fetch code
+    runs-on: ubuntu-latest
+    environment:
+      name: default
+      url: https://aleph0.com/
+    name: Deploy site
+    steps:
+      - name: Setup SSH
+        uses: kielabokkie/ssh-key-and-known-hosts-action@v1.3.5
+        with:
+          ssh-private-key: ${{ secrets.DREAMHOST_SSH_KEY }}
+          ssh-host: www.aleph0.com
+      - uses: actions/checkout@v3
+      - name: Copy to DreamHost
+        run: rsync -avz --exclude .github --exclude .git --exclude .vscode "${GITHUB_WORKSPACE%/}/" chjones@www.aleph0.com:aleph0.com/
