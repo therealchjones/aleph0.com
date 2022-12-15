@@ -1,0 +1,68 @@
+/* 
+	This file was wholly created by Christian Jones 
+	(chjones@aleph0.com), and is hereby released into the public
+	domain, with no rights reserved.
+*/
+
+body {
+	background-color:white; color:black; font-family:sans-serif;
+}
+
+/*
+	Note that Microsoft Internet Explorer versions 6.0 for 
+	Microsoft Windows and 5.2 for Apple Mac OS X do not support
+	margin:auto, but render the margin as 0.
+*/
+#content {
+	max-width:35em; margin-left:auto; margin-right:auto;
+	padding-left:1em; padding-right:1em;
+}
+
+#ads {
+	border:1px solid black; width:120px; float:left;
+}
+
+#ads p {
+	font-size:60%; margin:0;
+}
+
+#copyright {
+	font-size:smaller; margin-top:3em; margin-bottom:0.5em;
+}
+
+/*
+	The proper way to do this is #copyright > h2 , but Microsoft
+	Internet Explorer 6 for Microsoft Windows doesn't support
+	the '>' child selector.
+*/
+#copyright h2 {
+	float:left;
+}
+
+h2 img {
+	vertical-align:text-top; 
+}
+
+a img {
+	border-style:none;
+}
+
+td {
+	vertical-align:top;
+	padding-bottom:1ex;
+}
+
+sup.footnote {
+	font-size:60%;
+}
+
+sup.footnote a {
+	text-decoration:none;
+}
+
+#footnotes {
+	font-size:smaller; margin-top:3em;
+}
+th {
+	text-align:left;
+}

@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<link
+			type="text/css"
+			href="stylesheet.css"
+			rel="stylesheet"
+			title="Default"
+		/>
+
+		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+
+		<title>RXVT-max</title>
+	</head>
+
+	<body>
+		<div id="content">
+			<h1><a href="/computing/">Aleph&nbsp;0 Computing</a>: RXVT-max</h1>
+
+			<p>
+				<strong
+					>This page is no longer being updated. Please visit
+					<a href="http://www.aleph0.com/computing/">Aleph 0 Computing</a> for
+					information on current projects.</strong
+				>
+			</p>
+
+			<h2>Intro</h2>
+
+			<p>
+				This is a patch which allows the
+				<a href="http://www.cygwin.com/">Cygwin</a> RXVT (native version) window
+				to be started maximized without a foreground-colored border around the
+				used part of the terminal.
+			</p>
+
+			<p>
+				Normally, if the terminal size (given by the
+				<code>-geometry</code> parameter to RXVT or in the
+				<code>geometry</code> resource in <code>.Xdefaults</code>) is different
+				than the starting window size, RXVT colors the unused portion the same
+				as the foreground color. This is helpful in determining the best size to
+				make a terminal, but ugly once that size has been determined, since most
+				fonts will not fit the window perfectly.
+			</p>
+
+			<p>
+				For a full-screen terminal, the common workarounds are to set the
+				geometry as accurately as possible (which results in a slight waste of
+				screen real estate) and/or to manually maximize the window instead of
+				starting it maximized (which is just annoying). This patch allows
+				maximized startup without the border. This patch also allows some new
+				applications, such as starting a terminal with margins (i.e., an
+				invisible border).
+			</p>
+
+			<p>
+				<strong>Please note:</strong> This patch is for version 2.7.10-6 of
+				Cygwin&#39;s RXVT; this is not likely the current version of the
+				program. I don&#39;t use Cygwin any more, but I am happy to leave this
+				version posted here. It&#39;s likely this patch or a derivation thereof
+				will apply to correct this problem in the current version; try it out if
+				you like, and if you make a newer version,
+				<a href="mailto:chjones@aleph0.com">email me</a>&mdash;I&#39;ll be happy
+				to post a link to it here.
+			</p>
+
+			<h2>Instructions for the clueful</h2>
+
+			<ol>
+				<li>
+					RXVT source: Cygwin <code>setup.exe</code> or
+					<a
+						href="http://www.aleph0.com/computing/rxvt-max/rxvt-2.7.10-6-src.tar.bz2"
+						>http://www.aleph0.com/computing/rxvt-max/rxvt-2.7.10-6-src.tar.bz2</a
+					><sup class="footnote"><a href="#footnote1">1</a></sup>
+				</li>
+
+				<li>
+					Patch:
+					<a
+						href="http://www.aleph0.com/computing/rxvt-max/rxvt-max-2.7.10-6.diff"
+						>http://www.aleph0.com/computing/rxvt-max/rxvt-max-2.7.10-6.diff</a
+					><sup class="footnote"><a href="#footnote2">2</a></sup>
+				</li>
+
+				<li>
+					Unpack RXVT to <code>/usr/src</code>, copy patch to
+					<code>/usr/src</code>, <code>cd /usr/src/rxvt</code>, and
+					<code>patch&nbsp;-p1&nbsp;&lt;&nbsp;../rxvt-max-2.7.10-6.diff</code>
+				</li>
+
+				<li>
+					Configure and build as in
+					<code>/usr/share/doc/Cygwin/rxvt-2.7.10.README</code>;
+					<code>cp&nbsp;src/rxvt.exe&nbsp;/usr/bin/rxvt-max.exe</code>.
+				</li>
+
+				<li>
+					DOS batch file command:
+					<pre>
+start /max /b c:\cygwin\bin\rxvt-max.exe -geometry &lt;termsize&gt; -e /bin/bash --login -i
+</pre
+					>
+				</li>
+			</ol>
+
+			<h2>Instructions for the clueless</h2>
+
+			<ol>
+				<li>
+					First, download the Cygwin RXVT source. It is available using the
+					Cygwin <code>setup.exe</code> program or from
+					<a
+						href="http://www.aleph0.com/computing/rxvt-max/rxvt-2.7.10-6-src.tar.bz2"
+						>http://www.aleph0.com/computing/rxvt-max/rxvt-2.7.10-6-src.tar.bz2</a
+					>.<sup class="footnote"><a href="#footnote1">1</a></sup>
+				</li>
+
+				<li>
+					Also download the patch file:
+					<a
+						href="http://www.aleph0.com/computing/rxvt-max/rxvt-max-2.7.10-6.diff"
+						>http://www.aleph0.com/linux/cygwin/src/rxvt-max-2.7.10-6.diff</a
+					>.<sup class="footnote"><a href="#footnote2">2</a></sup>
+				</li>
+
+				<li>
+					In a Cygwin session, change to the directory to which you downloaded
+					these packages, and unpack:
+					<pre>
+tar xjf rxvt-2.7.10-6-src.tar.bz2
+</pre
+					>
+					(If you downloaded the source with <code>setup.exe</code>, it may
+					already be unpacked in <code>/usr/src/rxvt</code>; in that case, copy
+					the patch file to <code>/usr/src</code> and change to the
+					<code>/usr/src</code> directory.)
+				</li>
+
+				<li>
+					Apply the patch:
+					<pre>
+cd rxvt
+patch -p1 &lt; ../rxvt-max-2.7.10-6.diff
+</pre
+					>
+				</li>
+
+				<li>
+					And configure and build (these are the same configure options given in
+					<code>/usr/share/doc/Cygwin/rxvt-2.7.10.README</code> if you already
+					have RXVT installed on your system):
+					<pre>
+./configure --enable-utmp --enable-wtmp \
+	--enable-lastlog --enable-xpm-background \
+	--enable-menubar --enable-rxvt-scroll \
+	--enable-next-scroll --enable-xterm-scroll \
+	--enable-frills --enable-linespace \
+	--enable-mousewheel --enable-keepscrolling \
+	--enable-old-selection --enable-transparency \
+	--with-xpm-includes=`pwd`/W11/X11 \
+	--with-xpm-library=`pwd`/W11/lib \
+	--x-libraries=`pwd`/W11/lib \
+	--enable-languages --with-encoding=noenc \
+	CFLAGS="-O -g -W -I`pwd`/W11" \
+	LDFLAGS="-mwindows -Wl,--subsystem,console" \
+	DLIB=`pwd`/W11/wrap/rxvt_res.o &amp;&amp; \
+	sed -i 's%\(#define HAVE_STRUCT_UTMPX.*\)%/* \1 */%' \
+	config.h &amp;&amp; \
+	make
+</pre
+					>
+				</li>
+
+				<li>
+					At this point, it is possible to do a <code>make install</code>.
+					However, if you already have rxvt installed on your system, I
+					recommend simply copying the new <code>rxvt.exe</code> to
+					<code>/usr/bin/rxvt-max.exe</code>:
+					<pre>
+cp src/rxvt.exe /usr/bin/rxvt-max.exe
+</pre
+					>
+				</li>
+
+				<li>
+					Make a simple DOS batch file <code>term.bat</code> with the contents:
+					<pre>
+@echo off
+start /max /b c:\cygwin\bin\rxvt-max.exe -geometry &lt;termsize&gt; -e /bin/bash --login -i
+</pre
+					>
+
+					where <code>&lt;termsize&gt;</code> is an X/rxvt geometry string. You
+					can, of course, modify <code>c:\cygwin\cygwin.bat</code> to run this
+					instead of the current bash line, if you like. You&#39;ll probably
+					want to read the
+					<code>/usr/share/doc/Cygwin/rxvt-2.7.10.README</code> for more
+					information on choosing a proper font to go with your new prettier
+					full-screen terminal.
+				</li>
+			</ol>
+
+			<div id="footnotes">
+				<ol>
+					<li id="footnote1">
+						RXVT is released under the
+						<a href="http://www.gnu.org/licenses/gpl.html"
+							>GNU General Public License</a
+						>; it is not in the public domain, but is rather copyrighted. The
+						source, in accordance with the GPL, is redistributed here unchanged.
+					</li>
+
+					<li id="footnote2">
+						This patch to RXVT may constitute a &ldquo;derived work&rdquo; of
+						RXVT, and as such is released under the
+						<a href="http://www.gnu.org/licenses/gpl.html"
+							>GNU General Public License</a
+						>; it is not in the public domain, but is rather copyrighted. It is
+						freely redistributable.
+					</li>
+				</ol>
+			</div>
+			<!-- footnotes -->
+
+			<div id="copyright">
+				<h2>
+					<a href="http://www.norightsreserved.org/"
+						><img
+							src="http://www.norightsreserved.org/img/NoRightsReserved-tiny.png"
+							alt="No Rights Reserved"
+					/></a>
+				</h2>
+
+				<p>
+					All information on this website (<a href="http://www.aleph0.com/"
+						>http://www.aleph0.com/</a
+					>), unless otherwise noted, is wholly the work of
+					<a href="http://www.aleph0.com/~chjones/">Christian&nbsp;Jones</a> (<a
+						href="mailto:chjones@aleph0.com"
+						>chjones@aleph0.com</a
+					>). All information, data, and formatting is hereby released into the
+					public domain, with no rights reserved. For questions, concerns, or
+					comments, please
+					<a href="mailto:chjones@aleph0.com">email the author</a>.
+				</p>
+			</div>
+			<!-- copyright -->
+		</div>
+		<!-- content -->
+	</body>
+</html>

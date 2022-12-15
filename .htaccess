@@ -1,0 +1,52 @@
+redirect permanent /home/lmartin/aleph0.com/Wendy%2520and%2520Zoey.png http://www.aleph0.com/~lindsey/Wendy%20and%20Zoey.png
+redirect permanent /img/getfirefox.gif http://www.aleph0.com/archives/getfirefox.gif
+redirectmatch permanent ^/computing/macosx/<span http://www.aleph0.com/computing/macosx/dhcp-setup
+redirect gone /openbsd/lynx-tcpdump-35v36.tar.gz
+redirect gone /computing/machines/dave/i386-laptop.html.patch
+redirect permanent /computing/macosx/dhcp http://www.aleph0.com/computing/macosx/dhcp-setup
+redirect permanent /users.html http://www.aleph0.com/users/
+redirect permanent /infinit http://www.aleph0.com/computing/linux
+redirect permanent /linux http://www.aleph0.com/computing/linux
+redirect permanent /openbsd http://www.aleph0.com/computing/openbsd
+redirect permanent /norightsreserved http://www.norightsreserved.org
+redirect permanent /NoRightsReserved http://www.norightsreserved.org
+redirect permanent /reading.html http://www.aleph0.com/reading/
+redirect permanent /~dan http://dan.aleph0.com
+redirect permanent /~dwarren http://dan.aleph0.com
+redirect permanent /computing/machines/dave http://www.aleph0.com/computing/openbsd/inspiron-1000
+redirect seeother /computing/dev http://www.aleph0.com/computing
+redirect seeother /computing/index-old.html http://www.aleph0.com/computing/
+redirect seeother /computing/linux/cygwin http://www.aleph0.com/computing/rxvt-max
+redirect seeother /computing/rxvt-max/src http://www.aleph0.com/computing/rxvt-max
+redirect seeother /computing/rxvt-max/rxvt-max-2.7.10-3.diff http://www.aleph0.com/computing/rxvt-max
+redirectmatch seeother ^/computing/openbsd/bugs(/.*)*$ http://www.aleph0.com/computing/openbsd
+redirect permanent /computing/openbsd/laptop http://www.aleph0.com/computing/openbsd/inspiron-1000
+redirect seeother /computing/rxvt-max/rxvt-2.7.10-3-src.tar.bz2 http://www.aleph0.com/computing/rxvt-max/
+redirect permanent /computing/openbsd/dualboot.html http://www.aleph0.com/computing/openbsd/dualboot/
+redirect seeother /computing/openbsd/inspiron-1000/OpenBSD-3.8-dhcp-bug-tcpdump http://www.aleph0.com/computing/openbsd/
+redirect gone "/cal"
+redirect seeother "/quickstart.html" "/"
+redirect gone "/img/molly-first-65.m4v"
+redirect gone "/social"
+redirect gone /users
+redirect gone /reading
+redirect gone /img/anybrowser.png
+redirect gone /img/css.png
+redirect gone /img/xhtml10.png
+redirect gone /archives
+redirect gone /computing/phpinfo.php
+redirect gone /computing/network.png
+redirect gone /computing/bugreports
+redirect gone /computing/components
+redirect gone /computing/html
+redirect gone /computing/machines
+redirect gone /computing/windows
+redirect gone /computing/dashvo
+redirect gone /computing/openbsd/inspiron-1000/ownersmanual.pdf
+redirect gone /computing/openbsd/inspiron-1000/ownersmanualupdate-harddriveremoval.pdf
+redirect gone /computing/openbsd/inspiron-1000/setupsheet.pdf
+redirect gone /computing/macosx
+
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

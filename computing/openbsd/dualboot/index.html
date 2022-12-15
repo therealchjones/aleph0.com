@@ -1,0 +1,173 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+
+<link type="text/css" href="/stylesheet.css" rel="stylesheet"
+title="Default" />
+
+<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+
+<title>Dual-booting OpenBSD and Windows XP</title>
+
+</head>
+
+<body>
+
+<div id="ads">
+<p>Ads are created by, and assumed to be the property of, Google.</p>
+<script type="text/javascript"><!--
+google_ad_client = "pub-0810396290732400";
+/* First Ads */
+google_ad_slot = "9902091909";
+google_ad_width = 120;
+google_ad_height = 600;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div><!-- ads -->
+
+<div id="content">
+
+<h1><a href="http://www.aleph0.com/">Aleph 0</a>
+<a href="http://www.aleph0.com/computing/">Computing</a>:
+Dual-booting <a href="http://www.openbsd.org/">OpenBSD</a> and <a
+href="http://www.microsoft.com/windowsxp">Windows XP</a></h1>
+
+<p><strong>This page is no longer being updated.  Please visit <a
+href="http://www.aleph0.com/computing/">Aleph 0 Computing</a>
+for information on current projects.</strong></p>
+
+<p>The <a href="http://www.openbsd.org/faq/">OpenBSD FAQ</a> contains <a
+href="http://www.openbsd.org/faq/faq4.html#Multibooting">some rudimentary
+information on multibooting</a>, in fact enough that I was able to install both
+OpenBSD 3.6 (I haven&#39;t yet attempted with more recent versions) 
+and Windows XP on my Dell Inspiron 1100 laptop.  The information
+in the FAQ is repeated and somewhat expanded upon here;  some idiosyncracies
+still remained after following the instructions there.</p>
+
+<p>I&#39;ll generally assume you&#39;re starting from scratch here.  I have 
+no recent experience with hard disk &ldquo;re-partitioners&rdquo; like 
+Partition Magic, FIPS, or <a
+href="http://www.gnu.org/software/parted/">GNU Parted</a>.  Try them if you
+like, but I most certainly find it easier (and safer) to just back up my
+important files and reformat the disk.</p>
+
+<p>Personally, I chose to use a minimum amount of space for Windows and the
+rest for OpenBSD.  That minimum seems to be around 4 GB (a number which has
+likely continued to rise for newer versions) for Windows, its 
+updates, <a href="http://office.microsoft.com/">Microsoft Office</a> or <a
+href="http://www.openoffice.org/">OpenOffice.org</a>, <a
+href="http://www.mozilla.org/firefox/">Firefox</a>, and miscellaneous
+smaller utilities, along with the swap file.  Sure, there are probably ways to
+make that size smaller, but I&#39;d prefer to spend my time with just a basic
+Windows install, not significantly tweaked or changed, for those few times I 
+have to use it.</p>
+
+<h2>Installing Windows XP</h2>
+
+<p>Install Windows first.  Boot the CD, wait, and repartition your drive to have
+an empty primary partition.  Depending on your needs, I&#39;d suggest using a 
+FAT partition instead of NTFS, just because OpenBSD can read and write small 
+files from and to it more reliably (see the <code><strong>Warning</code></strong> in <code><a href="http://www.openbsd.org/cgi-bin/man.cgi?query=mount_ntfs">mount_ntfs(8)</a></code> for more information).  FAT is generally considered 
+less secure and slower, though, and Windows won&#39;t make a FAT partition
+larger than 32 GB.  However, as I mentioned, a 4 GB one seems to do fine.  Make sure
+to leave space on the drive for at least the OpenBSD root filesystem;  
+Windows&#39;s boot manager can only boot from the primary hard disk.</p>
+
+<p>The rest of the Windows installation shouldn&#39;t significantly differ from
+a normal installation.  Click, wait, configure, repeat.  You might as well
+go ahead and do all the updating and application installing;  no need to waste
+time installing OpenBSD if you end up messing up and needing to start over.</p>
+
+<h2>Installing OpenBSD</h2>
+
+<p>When you&#39;re ready to install OpenBSD, follow the general installation
+instructions, with only a couple of caveats.  First, when asked if you want
+to use the entire hard disk for OpenBSD, be sure to say no!  (It&#39;s actually
+the default.)  This will take you to OpenBSD&#39;s <a
+href="http://www.openbsd.org/faq/faq14.html#fdisk"><code>fdisk(8)</code></a>, 
+and you can add a partition for OpenBSD.  Personally, I just started on the 
+cylinder after the Windows partition and went to the end of the disk.</p>
+
+<p>Next <a 
+href="http://www.openbsd.org/cgi-bin/man.cgi?query=disklabel&amp;sektion=8"><code>disklabel(8)</code></a>
+will run to finish preparing the OpenBSD partition.  Most importantly, 
+<strong>don&#39;t</strong> delete the Windows partition that&#39;s already labelled;
+on my machine (and on most), it&#39;s partition <code>i</code>.  Add your OpenBSD 
+filesystems around it, and go on to naming the mountpoints.</p>
+
+<p>Again, the rest of installation shouldn&#39;t really depend on this being
+a dual-boot machine.   Finish up, and we&#39;ll make a few more changes before
+we&#39;re done.</p>
+
+<h2>Using the Windows XP boot manager</h2>
+
+<p>This is really just <a
+href="http://www.openbsd.org/faq/faq4.html#Multibooting">as described in the
+FAQ</a>.  To boot into OpenBSD, use the CD again, but at the <code>boot></code>
+prompt, enter <code>boot hd0a:/bsd</code>.  Login as <code>root</code>.  Enter
+<code>dd if=/dev/rwd0a of=openbsd.pbr bs=512 count=1</code>, changing 
+<code>rwd0a</code> to <code>rsd0a</code> if you boot from a SCSI hard disk.
+If you formatted your Windows XP partition as FAT, mount that partition and
+copy the file over.  If you chose NTFS, use a network or writable media to 
+transfer the file.</p>
+
+<p>Finally, remove the OpenBSD boot CD, and reboot into Windows.  Open the
+Start Menu, right-click on My Computer, and choose &ldquo;Properties&rdquo;.
+Click on the &ldquo;Advanced&rdquo; tab, click the &ldquo;Settings&rdquo;
+button under &ldquo;Startup Recovery&rdquo;, and under &ldquo;System 
+Startup&rdquo; click &ldquo;Edit&rdquo;.  Add 
+<code>C:\openbsd.pbr="OpenBSD"</code> to the end of the file, and save it.
+Reboot, and you should have a simple dual-boot menu.</p>
+
+<h2>Local time hardware clock</h2>
+
+<p>Next, there&#39;s no way to tell Windows XP that the computer&#39;s 
+hardware clock is set to anything other than local time.  That is, the time
+that&#39;s displayed in the &ldquo;system tray&rdquo; is the same time 
+that&#39;s saved in the internals of the computer.  However, OpenBSD assumes
+that the hardware clock time is Universal time, or UTC (also known as GMT).
+Therefore, we need to tell OpenBSD that&#39;s not actually the case.</p>
+
+<p>We do this by configuring the OpenBSD kernel to offset the hardware clock
+time by some amount.  This doesn&#39;t actually require a kernel recompile;
+since OpenBSD 2.6 the <code><a 
+href="http://www.openbsd.org/cgi-bin/man.cgi?query=config&amp;sektion=8">config(8)</a></code> 
+tool allows changes to be made to an already-compiled kernel.  First, identify
+the offset from UTC;  I live in Los Angeles, so we&#39;re 8 hours behind UTC
+during the winter (that is, Pacific Standard Time).  That&#39;s 480 minutes.
+Therefore, we will set an offset of 480 minutes.  If you&#39;re <em>ahead</em>
+of UTC, like, say, Budapest, the offset will be negative.</p>
+
+<p>Then, as <code>root</code>, enter <code>config -e -f /bsd</code>.  At
+the prompt, enter <code>timezone 480</code>, substituting whatever number is
+appropriate.  If you&#39;re currently under daylight saving time (during the summer), use <code>timezone 480 1</code>.  Enter <code>quit</code>, reboot, and 
+you&#39;re all set.</p>
+
+<div id="copyright">
+
+<h2><a href="http://www.norightsreserved.org/"><img 
+src="http://www.norightsreserved.org/img/NoRightsReserved-tiny.png"
+alt="No Rights Reserved" /></a></h2>
+
+<p>All information on this website (<a 
+href="http://www.aleph0.com/">http://www.aleph0.com/</a>), unless
+otherwise noted, is wholly the work of <a
+href="http://www.aleph0.com/~chjones/">Christian&nbsp;Jones</a> (<a
+href="mailto:chjones@aleph0.com">chjones@aleph0.com</a>).  All 
+information, data, and formatting is hereby released into the public
+domain, with no rights reserved.  For questions, concerns, or comments,
+please <a href="mailto:chjones@aleph0.com">email the author</a>.</p>
+
+</div><!-- copyright -->
+
+</div><!-- content -->
+
+</body>
+
+</html>

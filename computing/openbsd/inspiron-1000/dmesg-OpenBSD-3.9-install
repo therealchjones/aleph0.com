@@ -1,0 +1,32 @@
+CD-ROM: 9F
+Loading /3.9/I386/CDBOOT
+probing: pc0 apm mem[633K 444M a20=on]
+disk: hd0+ cd0
+>> OpenBSD/i386 CDBOOT 1.04
+boot>
+booting cd0a:/3.9/i386/bsd.rd: 4435508+740284 [52+155376+141982]=0x538528
+entry point at 0x100120
+
+Copyright (c) 1982, 1986, 1989, 1993
+	The Regents of the University of California.  All rights reserved.
+Copyright (c) 1995-2006 OpenBSD. All rights reserved.  http://www.OpenBSD.org
+
+OpenBSD 3.9 (RAMDISK_CD) #1025: Thu Mar  2 02:43:29 MST 2006
+    deraadt@u386.openbsd.org:/usr/src/sys/arch/i386/compile/RAMDISK_CD
+cpu0: Mobile Intel(R) Celeron(R) CPU 2.20GHz ("GenuineIntel" 686-class) 2.20GHz
+cpu0: FPU,V86,DE,PSE,TSC,MSR,PAE,MCE,CX8,APIC,SEP,MTRR,PGE,MCA,CMOV,PAT,PSE36,CFLUSH,ACPI,MMX,FXSR,SSE,SSE2,SS,HTT,TM,SBF,CNXT-ID
+real mem  = 467181568 (456232K)
+avail mem = 420257792 (410408K)
+using 4278 buffers containing 23461888 bytes (22912K) of memory
+mainbus0 (root)
+bios0 at mainbus0: AT/286+(9f) BIOS, date 03/04/05, BIOS32 rev. 0 @ 0xfd830
+apm0 at bios0: Power Management spec V1.2
+uvm_fault(0xd0554ca0, 0x4000, 0, 1) -> e
+fatal page fault in supervisor mode
+trap type 6 code 0 eip d02307ad cs 8 eflags 10046 cr2 469a cpl 0
+panic: trap type 6, code=0, pc=d02307ad
+
+The operating system has halted.
+Please press any key to reboot.
+
+

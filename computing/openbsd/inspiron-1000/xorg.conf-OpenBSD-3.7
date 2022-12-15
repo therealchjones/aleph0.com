@@ -1,0 +1,194 @@
+Section "ServerLayout"
+	Identifier     "X.org Configured"
+	Screen      0  "Screen0" 0 0
+	InputDevice    "Mouse0" "CorePointer"
+	InputDevice    "Keyboard0" "CoreKeyboard"
+EndSection
+
+Section "Files"
+	RgbPath      "/usr/X11R6/lib/X11/rgb"
+	ModulePath   "/usr/X11R6/lib/modules"
+	FontPath     "/usr/X11R6/lib/X11/fonts/misc/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/TTF/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/Type1/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/CID/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/75dpi/"
+	FontPath     "/usr/X11R6/lib/X11/fonts/100dpi/"
+EndSection
+
+Section "Module"
+	Load  "dbe"
+	Load  "extmod"
+	Load  "glx"
+	Load  "record"
+	Load  "xtrap"
+	Load  "freetype"
+	Load  "type1"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Keyboard0"
+	Driver      "kbd"
+EndSection
+
+Section "InputDevice"
+	Identifier  "Mouse0"
+	Driver      "mouse"
+	Option	    "Protocol" "wsmouse"
+	Option	    "Device" "/dev/wsmouse"
+	Option	    "ZAxisMapping" "4 5"
+EndSection
+
+Section "Monitor"
+	Identifier   "Monitor0"
+	VendorName   "Monitor Vendor"
+	ModelName    "Monitor Model"
+EndSection
+
+Section "Device"
+        ### Available Driver options are:-
+        ### Values: <i>: integer, <f>: float, <bool>: "True"/"False",
+        ### <string>: "String", <freq>: "<f> Hz/kHz/MHz"
+        ### [arg]: arg optional
+        #Option     "SWcursor"           	# [<bool>]
+        #Option     "HWcursor"           	# [<bool>]
+        #Option     "NoAccel"            	# [<bool>]
+        #Option     "TurboQueue"         	# [<bool>]
+        #Option     "FastVram"           	# [<bool>]
+        #Option     "NoHostBus"          	# [<bool>]
+        #Option     "RenderAcceleration" 	# [<bool>]
+        #Option     "ForceCRT1Type"      	# <str>
+        #Option     "ForceCRT2Type"      	# <str>
+        #Option     "YPbPrAspectRatio"   	# <str>
+        #Option     "ShadowFB"           	# [<bool>]
+        #Option     "DRI"                	# [<bool>]
+        #Option     "AGPSize"            	# <i>
+        #Option     "GARTSize"           	# <i>
+        #Option     "Rotate"             	# <str>
+        #Option     "NoXvideo"           	# [<bool>]
+        #Option     "Vesa"               	# [<bool>]
+        #Option     "MaxXFBMem"          	# <i>
+	# Enable this to turn on the external VGA output
+        Option     "ForceCRT1"          	# [<bool>]
+        #Option     "XvOnCRT2"           	# [<bool>]
+        #Option     "PanelDelayCompensation" 	# <i>
+        #Option     "PanelDelayCompensation1" 	# <i>
+        #Option     "PDC"                	# <i>
+        #Option     "PDC1"               	# <i>
+        #Option     "EMI"                	# <i>
+        #Option     "LVDSHL"             	# <i>
+        #Option     "SpecialTiming"      	# <str>
+        #Option     "TVStandard"         	# <str>
+        #Option     "UseROMData"         	# [<bool>]
+        #Option     "NoInternalModes"    	# [<bool>]
+        #Option     "UseOEMData"         	# [<bool>]
+        #Option     "NoYV12"             	# [<bool>]
+        #Option     "CHTVType"           	# [<bool>]
+        #Option     "CHTVOverscan"       	# [<bool>]
+        #Option     "CHTVSuperOverscan"  	# [<bool>]
+        #Option     "CHTVLumaBandwidthCVBS" 	# <i>
+        #Option     "CHTVLumaBandwidthSVIDEO" 	# <i>
+        #Option     "CHTVLumaFlickerFilter" 	# <i>
+        #Option     "CHTVChromaBandwidth" 	# <i>
+        #Option     "CHTVChromaFlickerFilter" 	# <i>
+        #Option     "CHTVCVBSColor"      	# [<bool>]
+        #Option     "CHTVTextEnhance"    	# <i>
+        #Option     "CHTVContrast"       	# <i>
+        #Option     "SISTVEdgeEnhance"   	# <i>
+        #Option     "SISTVAntiFlicker"   	# <str>
+        #Option     "SISTVSaturation"    	# <i>
+        #Option     "SISTVCFilter"       	# [<bool>]
+        #Option     "SISTVYFilter"       	# <i>
+        #Option     "SISTVColorCalibFine" 	# <i>
+        #Option     "SISTVColorCalibCoarse" 	# <i>
+        #Option     "SISTVXScale"        	# <i>
+        #Option     "SISTVYScale"        	# <i>
+        #Option     "TVXPosOffset"       	# <i>
+        #Option     "TVYPosOffset"       	# <i>
+        #Option     "SIS6326TVAntiFlicker" 	# <str>
+        #Option     "SIS6326TVEnableYFilter" 	# [<bool>]
+        #Option     "SIS6326TVYFilterStrong" 	# [<bool>]
+        #Option     "SIS6326TVForcePlug" 	# <str>
+        #Option     "SIS6326FSCAdjust"   	# <i>
+        #Option     "UseColorHWCursor"   	# [<bool>]
+        #Option     "ColorHWCursorBlending" 	# [<bool>]
+        #Option     "ColorHWCursorBlendThreshold" 	# <i>
+        #Option     "RestoreBySetMode"   	# [<bool>]
+        #Option     "NoCRT2Detection"    	# [<bool>]
+        #Option     "ForceCRT2ReDetection" 	# [<bool>]
+        #Option     "SenseYPbPr"         	# [<bool>]
+        #Option     "CRT1Gamma"          	# [<bool>]
+        #Option     "CRT2Gamma"          	# [<bool>]
+        #Option     "StoredGammaBrightness" 	# <str>
+        #Option     "StoredGammaPreBrightness" 	# <str>
+        #Option     "XvGamma"            	# <str>
+        #Option     "XvDefaultContrast"  	# <i>
+        #Option     "XvDefaultBrightness" 	# <i>
+        #Option     "XvDefaultHue"       	# <i>
+        #Option     "XvDefaultSaturation" 	# <i>
+        #Option     "XvDefaultDisableGfx" 	# [<bool>]
+        #Option     "XvDefaultDisableGfxLR" 	# [<bool>]
+        #Option     "XvChromaMin"        	# <i>
+        #Option     "XvChromaMax"        	# <i>
+        #Option     "XvUseChromaKey"     	# [<bool>]
+        #Option     "XvInsideChromaKey"  	# [<bool>]
+        #Option     "XvYUVChromaKey"     	# [<bool>]
+        #Option     "XvDisableColorKey"  	# [<bool>]
+        #Option     "XvUseMemcpy"        	# [<bool>]
+        #Option     "XvDefaultAdaptor"   	# <str>
+        #Option     "ScaleLCD"           	# [<bool>]
+        #Option     "CenterLCD"          	# [<bool>]
+        #Option     "EnableHotkey"       	# [<bool>]
+        #Option     "EnableSiSCtrl"      	# [<bool>]
+        #Option     "OverruleFrequencyRanges" 	# [<bool>]
+        #Option     "MergedFB"           	# [<bool>]
+        #Option     "TwinView"           	# [<bool>]
+        #Option     "MergedFBAuto"       	# [<bool>]
+        #Option     "CRT2HSync"          	# <str>
+        #Option     "SecondMonitorHorizSync" 	# <str>
+        #Option     "CRT2VRefresh"       	# <str>
+        #Option     "SecondMonitorVertRefresh" 	# <str>
+        #Option     "CRT2Position"       	# <str>
+        #Option     "TwinViewOrientation" 	# <str>
+        #Option     "MetaModes"          	# <str>
+        #Option     "MergedDPI"          	# <str>
+        #Option     "NoMergedXinerama"   	# [<bool>]
+        #Option     "NoTwinviewXineramaInfo" 	# [<bool>]
+        #Option     "MergedXineramaCRT2IsScreen0" 	# [<bool>]
+	Identifier  "Card0"
+	Driver      "sis"
+	VendorName  "Silicon Integrated Systems [SiS]"
+	BoardName   "SiS650/651/M650/740 PCI/AGP VGA Display Adapter"
+	BusID       "PCI:1:0:0"
+EndSection
+
+Section "Screen"
+	Identifier "Screen0"
+	Device     "Card0"
+	Monitor    "Monitor0"
+	SubSection "Display"
+		Viewport   0 0
+		Depth     1
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     4
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     8
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     15
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     16
+	EndSubSection
+	SubSection "Display"
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+EndSection
+
