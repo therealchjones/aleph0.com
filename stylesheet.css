@@ -1,5 +1,5 @@
-/* 
-	This file was wholly created by Christian Jones 
+/*
+	This file was wholly created by Christian Jones
 	(chjones@aleph0.com), and is hereby released into the public
 	domain, with no rights reserved.
 */
@@ -8,22 +8,17 @@ body {
 	background-color:white; color:black; font-family:sans-serif;
 }
 
+#header {
+	text-align: center;
+}
 /*
-	Note that Microsoft Internet Explorer versions 6.0 for 
+	Note that Microsoft Internet Explorer versions 6.0 for
 	Microsoft Windows and 5.2 for Apple Mac OS X do not support
 	margin:auto, but render the margin as 0.
 */
 #content {
 	max-width:35em; margin-left:auto; margin-right:auto;
 	padding-left:1em; padding-right:1em;
-}
-
-#ads {
-	border:1px solid black; width:120px; float:left;
-}
-
-#ads p {
-	font-size:60%; margin:0;
 }
 
 #copyright {
@@ -40,7 +35,7 @@ body {
 }
 
 h2 img {
-	vertical-align:text-top; 
+	vertical-align:text-top;
 }
 
 a img {
