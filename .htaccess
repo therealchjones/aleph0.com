@@ -46,6 +46,9 @@ redirect gone /computing/openbsd/inspiron-1000/ownersmanual.pdf
 redirect gone /computing/openbsd/inspiron-1000/ownersmanualupdate-harddriveremoval.pdf
 redirect gone /computing/openbsd/inspiron-1000/setupsheet.pdf
 redirect gone /computing/macosx
+redirect gone /computing
+redirect gone /img
+ErrorDocument 410 gone.html
 
 RewriteEngine On
 RewriteCond %{HTTPS} !=on
