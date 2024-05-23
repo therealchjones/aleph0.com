@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: deployment-from-main
-      url: https://aleph0.com/
+      url: https://www.aleph0.com/
     name: Deploy site
     steps:
       - name: Setup SSH
