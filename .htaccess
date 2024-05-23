@@ -89,4 +89,4 @@ redirect gone /chjones/computing/openbsd/inspiron-1000/dmesg-OpenBSD-3.9-install
 redirect gone /chjones/computing/openbsd/openbsd.png
 redirect gone /chjones/computing/openbsd/dualboot/
 redirect gone /chjones/computing/openbsd/dualboot/index.html
-ErrorDocument 410 gone.html
+ErrorDocument 410 /gone.html
