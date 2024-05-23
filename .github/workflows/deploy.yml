@@ -30,4 +30,4 @@ jobs:
           ssh-host: ssh.aleph0.com
       - uses: actions/checkout@v4.1.5
       - name: Copy to SeedHost
-        run: rsync -avz --exclude .github --exclude .git --exclude .vscode "${GITHUB_WORKSPACE%/}/" chjones@ssh.aleph0.com:aleph0.com/
+        run: rsync -avz --exclude .github --exclude .git --exclude .vscode "${GITHUB_WORKSPACE%/}/" chjones@ssh.aleph0.com:www/www.aleph0.com/
