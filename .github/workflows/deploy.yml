@@ -20,14 +20,14 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: deployment-from-main
-      url: https://aleph0.com/
+      url: https://www.aleph0.com/
     name: Deploy site
     steps:
       - name: Setup SSH
         uses: kielabokkie/ssh-key-and-known-hosts-action@v1.3.5
         with:
           ssh-private-key: ${{ secrets.DREAMHOST_PRIVATE_KEY }}
-          ssh-host: www.aleph0.com
+          ssh-host: ssh.aleph0.com
       - uses: actions/checkout@v3
-      - name: Copy to DreamHost
-        run: rsync -avz --exclude .github --exclude .git --exclude .vscode "${GITHUB_WORKSPACE%/}/" chjones@www.aleph0.com:aleph0.com/
+      - name: Copy to SeedHost
+        run: rsync -avz --exclude .github --exclude .git --exclude .vscode "${GITHUB_WORKSPACE%/}/" chjones@ssh.aleph0.com:www/www.aleph0.com/
