@@ -12,7 +12,7 @@
 		</h1>
 
 		<p>
-			There is no Aleph 0 page at https://www.aleph0.com<!--# echo var=${DOCUMENT_URI} -->. Consider
+			There is no Aleph 0 page at https://www.aleph0.com<!--# echo var=$"DOCUMENT_URI" -->. Consider
 			checking
 			<a href="https://web.archive.org/web/20220525200336/https://aleph0.com/">
 				the Internet Archive version of the site</a>
