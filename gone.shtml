@@ -12,12 +12,22 @@
 		</h1>
 
 		<p>
-			The Aleph 0 page you seek (https://www.aleph0.com<!--#echo var="DOCUMENT_URI" -->)
+			<!--#if expr='-n reqenv("REDIRECT_URL")' -->
+			<!--#set var="chjones_uri" value="$REDIRECT_URL" -->
+			<!--#else -->
+			<!--#set var="chjones_uri" value="$DOCUMENT_URI" -->
+			<!--#endif -->
+			<!--#if expr='reqenv("chjones_uri") =~ m#^/chjones(.*)$# && $1 =~ m#^(.*)$#' -->
+			<!--#set var="original_uri" value="$0" -->
+			<!--#else -->
+			<!--#set var="original_uri" value="$chjones_uri" -->
+			<!--#endif -->
+			<!--#set var="archive_uri" value="https://web.archive.org/web/20220525200336/https://aleph0.com${original_uri}" -->
+			<!--#set var="archive_link" value="<a href='$archive_uri'>$archive_uri</a>" -->
+			The Aleph 0 page you seek (https://www.aleph0.com<!--#echo var="original_uri" -->)
 			no longer exists. If it's available on
 			<a href="https://web.archive.org">The Internet Archive</a> then it should be at
-			<!--#set var="new_uri" value="https://web.archive.org/web/20220525200336/https://aleph0.com${DOCUMENT_URI}" -->
-			<a href="<!--#echo var="new_uri" -->">
-				<!--#echo var="new_uri" --></a>.
+			<!--#echo var=archive_link -->.
 		</p>
 		<p>[Error 410: Gone.]</p>
 	</body>

@@ -12,7 +12,17 @@
 		</h1>
 
 		<p>
-			There is no Aleph 0 page at https://www.aleph0.com<!--#echo var="DOCUMENT_URI" -->. Consider
+			<!--#if expr='-n reqenv("REDIRECT_URL")' -->
+			<!--#set var="chjones_uri" value="$REDIRECT_URL" -->
+			<!--#else -->
+			<!--#set var="chjones_uri" value="$DOCUMENT_URI" -->
+			<!--#endif -->
+			<!--#if expr='reqenv("chjones_uri") =~ m#^/chjones(.*)$# && $1 =~ m#^(.*)$#' -->
+			<!--#set var="original_uri" value="$0" -->
+			<!--#else -->
+			<!--#set var="original_uri" value="$chjones_uri" -->
+			<!--#endif -->
+			There is no Aleph 0 page at https://www.aleph0.com<!--#echo var="original_uri" -->. Consider
 			checking
 			<a href="https://web.archive.org/web/20220525200336/https://aleph0.com/">
 				the Internet Archive version of the site</a>
