@@ -12,8 +12,8 @@
 		</h1>
 
 		<p>
-			The Aleph 0 page you seek (<!--# echo "https://www.aleph0.com${DOCUMENT_URI}" -->) no longer exists. If it's
-			available on
+			The Aleph 0 page you seek (https://www.aleph0.com<!--# echo var="https://www.aleph0.com${DOCUMENT_URI}" -->)
+			no longer exists. If it's available on
 			<a href="https://web.archive.org">The Internet Archive</a> then it should be at
 			<a href="https://web.archive.org/web/20220525200336/https://aleph0.com${DOCUMENT_URI}">
 				https://web.archive.org/web/20220525200336/https://aleph0.com${DOCUMENT_URI}</a>.
