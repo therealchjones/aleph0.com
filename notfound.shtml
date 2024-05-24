@@ -22,7 +22,7 @@
 			<!--#else -->
 			<!--#set encoding="url" var="chjones_uri" value="$DOCUMENT_URI" -->
 			<!--#endif -->
-			<!--#if expr='reqenv("chjones_uri") =~ m#^%2Fchjones(.*)$# && $1 =~ m#^(.*)$#' -->
+			<!--#if expr='reqenv("chjones_uri") =~ m#^/chjones(.*)$# && $1 =~ m#^(.*)$#' -->
 			<!--#set var="original_uri" value="$0" -->
 			<!--#else -->
 			<!--#set var="original_uri" value="$chjones_uri" -->
