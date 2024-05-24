@@ -12,11 +12,12 @@
 		</h1>
 
 		<p>
-			The Aleph 0 page you seek (https://www.aleph0.com<!--# echo var="DOCUMENT_URI" -->)
+			The Aleph 0 page you seek (https://www.aleph0.com<!--#echo var="DOCUMENT_URI" -->)
 			no longer exists. If it's available on
 			<a href="https://web.archive.org">The Internet Archive</a> then it should be at
-			<a href="https://web.archive.org/web/20220525200336/https://aleph0.com<!--# echo var="DOCUMENT_URI" -->">
-				https://web.archive.org/web/20220525200336/https://aleph0.com<!--# echo var="DOCUMENT_URI"</a>.
+			<!--#set var="new_uri" value="https://web.archive.org/web/20220525200336/https://aleph0.com${DOCUMENT_URI}" -->
+			<a href="<!--#echo var="new_uri" -->">
+				<!--#echo var="new_uri" --></a>.
 		</p>
 		<p>[Error 410: Gone.]</p>
 	</body>
