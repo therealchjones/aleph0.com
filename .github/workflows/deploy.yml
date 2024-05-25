@@ -2,7 +2,7 @@
 #
 # Intentionally does not delete any files from server, though existing ones may
 # be overwritten.
-name: Deploy site to DreamHost
+name: Deploy site to SeedHost
 
 on:
   push:
